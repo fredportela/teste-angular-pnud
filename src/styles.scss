@@ -10,12 +10,21 @@ $app-theme: mat.define-light-theme((
 
 @include mat.all-component-themes($app-theme);
 
-:root { --page-padding: 16px; }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, 'Helvetica Neue', sans-serif; }
+:root { 
+  --page-padding: 16px; 
+}
+
+html, body { 
+  height: 100%; 
+}
+
+body { 
+  margin: 0; 
+  font-family: Roboto, 'Helvetica Neue', sans-serif; 
+}
 
 .container { 
-  padding: var(--page-padding); 
+  padding: 1rem;
 }
 
 .table-responsive { 
@@ -24,6 +33,10 @@ body { margin: 0; font-family: Roboto, 'Helvetica Neue', sans-serif; }
 
 .w-100{
   width:100%
+}
+
+mat-card {
+  padding: 1rem;
 }
 
 @media (max-width: 768px) {

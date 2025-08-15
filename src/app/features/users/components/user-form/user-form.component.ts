@@ -48,7 +48,7 @@ export class UserFormComponent implements OnInit {
 
     req$.subscribe({
       next: () => {
-        this.snack.open('Saved!', 'OK', { duration: 2000 });
+        this.snack.open('Usuário salvo com sucesso!', 'OK', { duration: 2000 });
         this.router.navigate(['/users']);
       }
     });

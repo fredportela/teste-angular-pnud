@@ -1,0 +1,11 @@
+
+.full-width-table {
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+  .mat-table {
+    font-size: 0.9rem;
+  }
+}

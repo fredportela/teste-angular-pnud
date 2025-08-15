@@ -1,31 +1,31 @@
 <div class="container">
   <mat-card>
-    <mat-card-title>{{ id ? 'Edit User' : 'New User' }}</mat-card-title>
+    <mat-card-title>{{ id ? 'Editar Usuário' : 'Novo Usuário' }}</mat-card-title>
     <form [formGroup]="form" (ngSubmit)="save()" class="form">
       <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Name</mat-label>
+        <mat-label>Nome</mat-label>
         <input matInput formControlName="name" required />
-        <mat-error *ngIf="form.get('name')?.invalid">Name is required</mat-error>
+        <mat-error *ngIf="form.get('name')?.invalid">Nome é requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" required type="email" />
-        <mat-error *ngIf="form.get('email')?.invalid">Valid email is required</mat-error>
+        <mat-error *ngIf="form.get('email')?.invalid">Email válido é requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Role</mat-label>
+        <mat-label>Função</mat-label>
         <mat-select formControlName="role">
-          <mat-option value="user">User</mat-option>
-          <mat-option value="manager">Manager</mat-option>
-          <mat-option value="admin">Admin</mat-option>
+          <mat-option value="user">Usuário</mat-option>
+          <mat-option value="manager">Gerente</mat-option>
+          <mat-option value="admin">Administrador</mat-option>
         </mat-select>
       </mat-form-field>
 
       <div class="actions">
-        <button mat-stroked-button color="primary" type="submit" [disabled]="form.invalid">Save</button>
-        <button mat-button type="button" routerLink="/users">Cancel</button>
+        <button mat-stroked-button color="primary" type="submit" [disabled]="form.invalid">Salvar</button>
+        <button mat-button type="button" routerLink="/users">Cancelar</button>
       </div>
     </form>
   </mat-card>
