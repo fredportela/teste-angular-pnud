@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { HttpErrorInterceptor } from './core/interceptors/http-error.interceptor';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,7 +17,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
     BrowserAnimationsModule, 
     HttpClientModule, 
     AppRoutingModule, 
-    SharedModule, ServiceWorkerModule.register('ngsw-worker.js', {
+    SharedModule,
+    MatSnackBarModule,
+    ServiceWorkerModule.register('ngsw-worker.js', {
       enabled: !isDevMode(),
       registrationStrategy: 'registerWhenStable:30000'
     })

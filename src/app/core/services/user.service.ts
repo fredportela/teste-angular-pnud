@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class UserService {
   private baseUrl = `${environment.apiUrl}/users`;
-  // https://jsonplaceholder.typicode.com/users
+  
   constructor(private http: HttpClient) {}
 
   list(): Observable<User[]> {
