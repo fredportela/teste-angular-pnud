@@ -19,6 +19,8 @@ export class UserFormComponent implements OnInit {
     role: ['user', [Validators.required]]
   });
 
+  loading = false;
+
   constructor(
     private fb: FormBuilder,
     private users: UserService,
@@ -33,10 +35,12 @@ export class UserFormComponent implements OnInit {
         const idParam = params.get('id');
         if (!idParam) return of(null);
         this.id = Number(idParam);
+        this.loading = true;
         return this.users.get(this.id);
       })
     ).subscribe(user => {
       if (user) this.form.patchValue(user);
+      this.loading = false;
     });
   }
 

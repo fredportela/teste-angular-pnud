@@ -1,3 +1,7 @@
+mat-card-title {
+  margin-bottom: 1rem;
+}
+
 .form {
   display: grid;
   gap: 1rem;
@@ -6,4 +10,33 @@
 .actions {
   display:flex;
   gap:.5rem;
+}
+
+.skeleton {
+  background-color: #e0e0e0;
+  border-radius: 4px;
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+.skeleton-title {
+  height: 24px;
+  width: 200px;
+  margin-bottom: 16px;
+}
+
+.skeleton-field {
+  height: 56px;
+  margin-bottom: 16px;
+}
+
+.skeleton-button {
+  height: 36px;
+  width: 120px;
+  margin-top: 8px;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
 }

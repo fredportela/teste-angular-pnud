@@ -2,32 +2,55 @@
   <mat-card>
     <mat-card-title>Usuários</mat-card-title>
 
-    <div class="table-responsive" *ngIf="!loading; else skeleton">
-      <table mat-table [dataSource]="data" class="mat-elevation-z2" role="table">
+    <div class="table-responsive">
+      <table mat-table [dataSource]="loading ? skeletonData : data" class="mat-elevation-z2" role="table">
+        
+        <!-- Nome -->
         <ng-container matColumnDef="name">
           <th mat-header-cell *matHeaderCellDef> Nome </th>
-          <td mat-cell *matCellDef="let u"> {{u.name}} </td>
+          <td mat-cell *matCellDef="let u">
+            <span *ngIf="!loading; else nameSkeleton">{{u.name}}</span>
+            <ng-template #nameSkeleton>
+              <div class="skeleton skeleton-text"></div>
+            </ng-template>
+          </td>
         </ng-container>
 
+        <!-- Email -->
         <ng-container matColumnDef="email">
           <th mat-header-cell *matHeaderCellDef> Email </th>
-          <td mat-cell *matCellDef="let u"> {{u.email}} </td>
+          <td mat-cell *matCellDef="let u">
+            <span *ngIf="!loading; else emailSkeleton">{{u.email}}</span>
+            <ng-template #emailSkeleton>
+              <div class="skeleton skeleton-text"></div>
+            </ng-template>
+          </td>
         </ng-container>
 
+        <!-- Função -->
         <ng-container matColumnDef="role">
           <th mat-header-cell *matHeaderCellDef> Função </th>
-          <td mat-cell *matCellDef="let u"> {{u.role}} </td>
+          <td mat-cell *matCellDef="let u">
+            <span *ngIf="!loading; else roleSkeleton">{{u.role}}</span>
+            <ng-template #roleSkeleton>
+              <div class="skeleton skeleton-text"></div>
+            </ng-template>
+          </td>
         </ng-container>
 
+        <!-- Ações -->
         <ng-container matColumnDef="actions">
           <th mat-header-cell *matHeaderCellDef class="actions">&nbsp;</th>
           <td mat-cell *matCellDef="let u">
-            <button mat-icon-button color="primary" (click)="edit(u)">
-              <mat-icon>edit</mat-icon>
-            </button>
-            <button mat-icon-button color="warn" (click)="remove(u)">
-              <mat-icon>delete</mat-icon>
-            </button>
+            <ng-container *ngIf="!loading">
+              <button mat-icon-button color="primary" (click)="edit(u)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="remove(u)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </ng-container>
+            <div *ngIf="loading" class="skeleton skeleton-button"></div>
           </td>
         </ng-container>
 
@@ -35,9 +58,5 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
     </div>
-
-    <ng-template #skeleton>
-      <p class="container">Carregando...</p>
-    </ng-template>
   </mat-card>
 </div>

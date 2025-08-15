@@ -1,6 +1,31 @@
+
 <mat-toolbar color="primary">
-  <span class="brand">Gestão de Usuários</span>
-  <span class="spacer"></span>
-  <a mat-button routerLink="/users">Usuários</a>
-  <a mat-raised-button color="accent" routerLink="/users/new">Novo</a>
+  <button mat-icon-button (click)="drawer.toggle()" aria-label="Menu">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span class="header-title">Gestão de Usuários</span>
 </mat-toolbar>
+
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer mode="over" class="sidenav">
+    <mat-nav-list>
+      <mat-list-item>
+        <strong>Usuários</strong>
+      </mat-list-item>
+      <a mat-list-item routerLink="/users" (click)="drawer.close()">
+        <mat-icon>group</mat-icon>
+        <span>Usuários</span>
+      </a>
+      <a mat-list-item routerLink="/users/new" (click)="drawer.close()">
+        <mat-icon>person_add</mat-icon>
+        <span>Cadastrar Usuário</span>
+      </a>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+    
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <ng-content></ng-content>
+  </mat-sidenav-content>
+</mat-sidenav-container>

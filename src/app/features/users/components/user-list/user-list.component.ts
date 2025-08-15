@@ -10,12 +10,15 @@ import { Router } from '@angular/router';
 })
 export class UserListComponent implements OnInit {
   displayedColumns = ['name', 'email', 'role', 'actions'];
+  skeletonData = [{}, {}, {}];
   data: User[] = [];
   loading = false;
 
   constructor(private users: UserService, private router: Router) {}
 
-  ngOnInit(): void { this.fetch(); }
+  ngOnInit(): void { 
+    this.fetch(); 
+  }  
 
   fetch(): void {
     this.loading = true;
@@ -25,7 +28,10 @@ export class UserListComponent implements OnInit {
     });
   }
 
-  edit(u: User) { this.router.navigate(['/users', u.id, 'edit']); }
+  edit(u: User) { 
+    this.router.navigate(['/users', u.id, 'edit']); 
+  }
+  
   remove(u: User) {
     if (!u.id) return;
     this.users.remove(u.id).subscribe(() => this.fetch());

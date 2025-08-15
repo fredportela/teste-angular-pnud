@@ -1,7 +1,15 @@
 <div class="container">
   <mat-card>
-    <mat-card-title>{{ id ? 'Editar Usuário' : 'Novo Usuário' }}</mat-card-title>
-    <form [formGroup]="form" (ngSubmit)="save()" class="form">
+    <mat-card-title>
+      <ng-container>
+        {{ id ? 'Editar Usuário' : 'Novo Usuário' }}
+      </ng-container>
+      <ng-template #skeletonTitle>
+        <div class="skeleton skeleton-title"></div>
+      </ng-template>
+    </mat-card-title>
+
+    <form *ngIf="!loading; else skeletonForm" [formGroup]="form" (ngSubmit)="save()" class="form">
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name" required />
@@ -28,6 +36,12 @@
         <button mat-button type="button" routerLink="/users">Cancelar</button>
       </div>
     </form>
+
+    <ng-template #skeletonForm>
+      <div class="skeleton skeleton-field"></div>
+      <div class="skeleton skeleton-field"></div>
+      <div class="skeleton skeleton-field"></div>
+      <div class="skeleton skeleton-button"></div>
+    </ng-template>
   </mat-card>
 </div>
-

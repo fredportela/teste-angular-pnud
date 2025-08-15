@@ -1,8 +1,24 @@
-
-.brand { 
-  font-weight: 600; 
+.sidenav-container {
+  height: 100vh;
 }
 
-.spacer { 
-  flex: 1 1 auto; 
+.title {
+  font-weight: bold;
+  margin-left: 8px;
 }
+
+mat-sidenav {
+  width: 250px;
+
+  mat-nav-list {
+    span {
+      vertical-align: super;
+    }
+
+    mat-icon {
+      margin-right: 8px;
+    }
+  }
+
+}
+
