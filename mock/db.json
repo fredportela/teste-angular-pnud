@@ -1,0 +1,7 @@
+{
+  "users": [
+    { "id": 1, "name": "Teste", "email": "teste@teste.com", "role": "admin" },
+    { "id": 2, "name": "Teste 2", "email": "teste2@teste.com", "role": "user" },
+    { "id": 3, "name": "Grace Hopper", "email": "grace@navy.mil", "role": "user" }
+  ]
+}
