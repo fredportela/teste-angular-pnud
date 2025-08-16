@@ -13,7 +13,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./user-list.component.scss'],
 })
 export class UserListComponent implements OnInit, AfterViewInit {
-  displayedColumns = ['name', 'username', 'email', 'phone', 'city', 'actions'];
+  displayedColumns = ['name', 'email', 'active', 'actions'];
   skeletonData = [{}, {}, {}];
   data: User[] = [];
   filteredData: User[] = [];
@@ -48,51 +48,31 @@ export class UserListComponent implements OnInit, AfterViewInit {
       });
   }
 
-  filterUsers(searchTerm: string): void {
-    if (!searchTerm.trim()) {
-      this.filteredData = [...this.data];
-    } else {
-      const term = searchTerm.toLowerCase();
-      this.filteredData = this.data.filter(user => 
-        user.name?.toLowerCase().includes(term) ||
-        user.username?.toLowerCase().includes(term) ||
-        user.email?.toLowerCase().includes(term) ||
-        user.phone?.toLowerCase().includes(term) ||
-        user.address?.city?.toLowerCase().includes(term)
-      );
-    }
-    
-    this.dataSource.data = this.filteredData;
-    
-    if (this.paginator) {
-      this.paginator.firstPage();
-    }
-  }
-
   filterCurrentPage(searchTerm: string): void {
     if (!searchTerm.trim()) {
-      this.dataSource.data = this.filteredData;
+      this.iterator();
       return;
     }
-
     const term = searchTerm.toLowerCase();
     
     const allFiltered = this.data.filter(user => 
       user.name?.toLowerCase().includes(term) ||
-      user.username?.toLowerCase().includes(term) ||
-      user.email?.toLowerCase().includes(term) ||
-      user.phone?.toLowerCase().includes(term) ||
-      user.address?.city?.toLowerCase().includes(term) ||
-      user.company?.name?.toLowerCase().includes(term)
+      user.email?.toLowerCase().includes(term) ||    
+      (term === 'ativo' && user.active) ||
+      (term === 'inativo' && !user.active)  
     );
-
     this.filteredData = allFiltered;
-    
     this.dataSource.data = this.filteredData;
-    
     if (this.paginator) {
-      this.paginator.firstPage();
+      this.filterIterator();
     }
+  }
+  
+  private filterIterator() {
+    const end = (this.currentPage + 1) * this.pageSize;
+    const start = this.currentPage * this.pageSize;
+    this.filteredData = this.filteredData.slice(start, end);
+    this.dataSource = new MatTableDataSource(this.filteredData);
   }
 
   fetch(): void {
@@ -131,10 +111,11 @@ export class UserListComponent implements OnInit, AfterViewInit {
   changePage($event: any) {
     if($event.pageSize !== this.pageSize) {
       this.pageSize = $event.pageSize;
-      this.currentPage = 0;
+      this.paginator.pageIndex = 0
     } else {
-      this.currentPage = $event.pageIndex;
+      this.paginator.pageIndex = $event.pageIndex;
     }
+    this.currentPage = this.paginator.pageIndex ?? 0;
     this.iterator();
   }
 }

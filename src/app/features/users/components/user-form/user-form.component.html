@@ -20,75 +20,19 @@
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Usuário</mat-label>
-        <input matInput formControlName="username" required />
-        <mat-error *ngIf="form.get('username')?.invalid">Usuário é requerido</mat-error>
-      </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-100">
         <mat-label>Email</mat-label>
         <input matInput formControlName="email" required type="email" />
         <mat-error *ngIf="form.get('email')?.invalid">Email válido é requerido</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Telefone</mat-label>
-        <input matInput formControlName="phone" required />
-        <mat-error *ngIf="form.get('phone')?.invalid">Telefone é requerido</mat-error>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="active" required>
+          <mat-option [value]="true">Ativo</mat-option>
+          <mat-option [value]="false">Inativo</mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('active')?.invalid">Status é requerido</mat-error>
       </mat-form-field>
-
-      <mat-form-field appearance="outline" class="w-100">
-        <mat-label>Website</mat-label>
-        <input matInput formControlName="website" />
-      </mat-form-field>
-
-      <h3>Endereço</h3>
-      <div formGroupName="address">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Logadouro</mat-label>
-          <input matInput formControlName="street" required />
-          <mat-error *ngIf="form.get('address.street')?.invalid">Logadouro é requerida</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Complemento</mat-label>
-          <input matInput formControlName="suite" required />
-          <mat-error *ngIf="form.get('address.suite')?.invalid">Complemento é requerido</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Cidade</mat-label>
-          <input matInput formControlName="city" required />
-          <mat-error *ngIf="form.get('address.city')?.invalid">Cidade é requerida</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>CEP</mat-label>
-          <input matInput formControlName="zipcode" required />
-          <mat-error *ngIf="form.get('address.zipcode')?.invalid">CEP é requerido</mat-error>
-        </mat-form-field>
-
-      </div>
-
-      <h3>Empresa</h3>
-      <div formGroupName="company">
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Nome da Empresa</mat-label>
-          <input matInput formControlName="name" />
-
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Slogan</mat-label>
-          <input matInput formControlName="catchPhrase" />
-
-        </mat-form-field>
-
-        <mat-form-field appearance="outline" class="w-100">
-          <mat-label>Descrição</mat-label>
-          <textarea matInput formControlName="bs" rows="3"></textarea>
-        </mat-form-field>
-      </div>
 
       <div class="actions">
         <button mat-stroked-button color="primary" type="submit" [disabled]="form.invalid">Salvar</button>

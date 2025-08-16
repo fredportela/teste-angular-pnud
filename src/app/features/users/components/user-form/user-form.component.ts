@@ -15,21 +15,8 @@ export class UserFormComponent implements OnInit {
 
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
-    username: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', [Validators.required]],
-    website: [''],
-    address: this.fb.group({
-      street: ['', [Validators.required]],
-      suite: ['', [Validators.required]],
-      city: ['', [Validators.required]],
-      zipcode: ['', [Validators.required]],
-    }),
-    company: this.fb.group({
-      name: [''],
-      catchPhrase: [''],
-      bs: ['']
-    })
+    active: [true, [Validators.required]]
   });
 
   loading = false;
