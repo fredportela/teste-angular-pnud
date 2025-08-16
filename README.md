@@ -43,9 +43,14 @@ npm install
 
 Para rodar o projeto utilizando uma API mockada:
 ```bash
+npm run start:all
+```
+ou
+```bash
 npm run mock:server
 npm start
 ```
+ 
 O comando `mock:server` iniciará o servidor fake para simular a API.
 
 ## Executando o projeto com API Externa
@@ -54,7 +59,7 @@ Configure a URL da API no arquivo `src/environments/environment.ts`:
 ```typescript
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:3000' ou 'https://jsonplaceholder.typicode.com'
+  apiUrl: 'http://localhost:3000'
 };
 ```
 

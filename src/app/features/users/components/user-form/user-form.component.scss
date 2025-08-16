@@ -7,9 +7,40 @@ mat-card-title {
   gap: 1rem;
 }
 
+// Estilos para as seções
+h3 {
+  color: #1976d2;
+  margin: 1.5rem 0 1rem 0;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+h4 {
+  color: #666;
+  margin: 1rem 0 0.5rem 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+// Grupo de coordenadas geográficas
+.geo-group {
+  .geo-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
 .actions {
-  display:flex;
-  gap:.5rem;
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 2rem;
 }
 
 .skeleton {

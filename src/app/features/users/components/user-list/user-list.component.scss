@@ -4,9 +4,52 @@
   overflow-x: auto;
 }
 
-@media (max-width: 600px) {
-  .mat-table {
-    font-size: 0.9rem;
+mat-card-title {
+  margin-bottom: 1rem;
+}
+
+mat-card-content {
+  padding: 0;
+}
+
+.search-container {
+  margin-bottom: 20px;
+  
+  .search-field {
+    width: 100%;
+    max-width: 400px;
+
+    mat-icon {
+      padding: 0 12px;
+    }
+    
+    button > mat-icon {
+      padding: 0;
+    }
+  }
+
+}
+
+.mat-paginator {
+  margin-top: 20px;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px 20px;
+  color: #666;
+  
+  mat-icon {
+    font-size: 48px;
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    color: #ccc;
+  }
+  
+  p {
+    margin: 0;
+    font-size: 16px;
   }
 }
 
@@ -31,4 +74,15 @@
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
+}
+
+
+@media (max-width: 600px) {
+  .mat-table {
+    font-size: 0.9rem;
+  }
+
+  .search-container .search-field {
+    max-width: 100%;
+  }
 }

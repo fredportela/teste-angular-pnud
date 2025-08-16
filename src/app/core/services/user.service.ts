@@ -13,16 +13,20 @@ export class UserService {
   list(): Observable<User[]> {
     return this.http.get<User[]>(this.baseUrl);
   }
-  get(id: number): Observable<User> {
+
+  get(id: string): Observable<User> {
     return this.http.get<User>(`${this.baseUrl}/${id}`);
   }
+
   create(payload: User): Observable<User> {
     return this.http.post<User>(this.baseUrl, payload);
   }
-  update(id: number, payload: User): Observable<User> {
+
+  update(id: string, payload: User): Observable<User> {
     return this.http.put<User>(`${this.baseUrl}/${id}`, payload);
   }
-  remove(id: number): Observable<void> {
+
+  remove(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

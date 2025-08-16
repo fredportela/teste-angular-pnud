@@ -11,12 +11,25 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   styleUrls: ['./user-form.component.scss'],
 })
 export class UserFormComponent implements OnInit {
-  id?: number;
+  id?: string;
 
   form = this.fb.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
+    username: ['', [Validators.required, Validators.minLength(3)]],
     email: ['', [Validators.required, Validators.email]],
-    role: ['user', [Validators.required]]
+    phone: ['', [Validators.required]],
+    website: [''],
+    address: this.fb.group({
+      street: ['', [Validators.required]],
+      suite: ['', [Validators.required]],
+      city: ['', [Validators.required]],
+      zipcode: ['', [Validators.required]],
+    }),
+    company: this.fb.group({
+      name: [''],
+      catchPhrase: [''],
+      bs: ['']
+    })
   });
 
   loading = false;
@@ -34,7 +47,7 @@ export class UserFormComponent implements OnInit {
       switchMap(params => {
         const idParam = params.get('id');
         if (!idParam) return of(null);
-        this.id = Number(idParam);
+        this.id = idParam;
         this.loading = true;
         return this.users.get(this.id);
       })
