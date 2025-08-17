@@ -13,9 +13,14 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [UserListComponent, UserFormComponent],
+  declarations: [
+    UserListComponent, 
+    UserFormComponent, 
+    DashboardComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,

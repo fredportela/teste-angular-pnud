@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { UserService } from '../../../../core/services/user.service';
 import { User } from '../../../../core/models/user.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
@@ -18,6 +18,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
   data: User[] = [];
   filteredData: User[] = [];
   loading = false;
+  
   dataSource = new MatTableDataSource<User>([]);
   searchControl = new FormControl('');
   currentPage = 0;
@@ -26,15 +27,42 @@ export class UserListComponent implements OnInit, AfterViewInit {
   pageSize = 5;
   pageSizeOptions = [5, 10, 25, 50];
 
-  constructor(private users: UserService, private router: Router) {}
+  constructor(
+    private users: UserService, 
+    private router: Router,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void { 
-    this.fetch();
     this.setupSearch();
+    this.fetch();
   }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+  }
+
+  checkState(): void {
+    const state = history.state;
+    if (state && state?.status) {
+      const status = history.state.status;
+        this.applyStatusFilter(status);
+    }
+  }
+
+  applyStatusFilter(status: string): void {
+    if (status === 'active') {
+      this.filteredData = this.data.filter(user => user.active);
+      this.searchControl.setValue('Ativo');
+    } else if (status === 'inactive') {
+      this.filteredData = this.data.filter(user => !user.active);
+      this.searchControl.setValue('Inativo');
+    }
+    
+    this.dataSource.data = this.filteredData;
+    if (this.paginator) {
+      this.paginator.firstPage();
+    }
   }
 
   setupSearch(): void {
@@ -61,6 +89,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
       (term === 'ativo' && user.active) ||
       (term === 'inativo' && !user.active)  
     );
+
     this.filteredData = allFiltered;
     this.dataSource.data = this.filteredData;
     if (this.paginator) {
@@ -81,6 +110,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
       next: res => {
         this.data = res;
         this.iterator();
+        this.checkState();
         this.loading = false;
       },
       error: _ => (this.loading = false)

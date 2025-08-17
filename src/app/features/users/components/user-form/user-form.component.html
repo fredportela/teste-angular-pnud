@@ -11,8 +11,6 @@
 
     <form *ngIf="!loading; else skeletonForm" [formGroup]="form" (ngSubmit)="save()" class="form">
       
-      <h3>Informações Básicas</h3>
-      
       <mat-form-field appearance="outline" class="w-100">
         <mat-label>Nome</mat-label>
         <input matInput formControlName="name" required />

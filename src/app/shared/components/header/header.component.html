@@ -12,9 +12,13 @@
       <mat-list-item>
         <strong>Usuários</strong>
       </mat-list-item>
+      <a mat-list-item routerLink="/users/dashboard" (click)="drawer.close()">
+        <mat-icon>analytics</mat-icon>
+        <span>Dashboard</span>
+      </a>
       <a mat-list-item routerLink="/users" (click)="drawer.close()">
         <mat-icon>group</mat-icon>
-        <span>Usuários</span>
+        <span>Listar Usuários</span>
       </a>
       <a mat-list-item routerLink="/users/new" (click)="drawer.close()">
         <mat-icon>person_add</mat-icon>
