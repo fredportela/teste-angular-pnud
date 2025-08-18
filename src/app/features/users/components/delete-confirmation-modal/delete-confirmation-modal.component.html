@@ -1,0 +1,49 @@
+<div class="delete-confirmation-modal">
+  <div class="modal-header">
+    <h2 mat-dialog-title>
+      <mat-icon class="warning-icon">warning</mat-icon>
+      {{ title }}
+    </h2>
+  </div>
+
+  <mat-dialog-content>
+    <div class="confirmation-content">
+      <p class="message">{{ message }}</p>
+      
+      <div class="user-info">
+        <mat-card>
+          <mat-card-content>
+            <div class="user-details">
+              <div class="user-avatar">
+                <mat-icon>person</mat-icon>
+              </div>
+              <div class="user-text">
+                <h3>{{ userName }}</h3>
+                <p>{{ userEmail }}</p>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div class="warning-box">
+        <mat-icon class="warning-icon">info</mat-icon>
+        <p><strong>Atenção:</strong> Esta ação não pode ser desfeita. O usuário será permanentemente removido do sistema.</p>
+      </div>
+    </div>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="cancel()" class="cancel-btn">
+      Cancelar
+    </button>
+    <button mat-raised-button 
+            color="warn" 
+            (click)="confirm()" 
+            class="confirm-btn"
+            cdkFocusInitial>
+      <mat-icon>delete</mat-icon>
+      Excluir
+    </button>
+  </mat-dialog-actions>
+</div>

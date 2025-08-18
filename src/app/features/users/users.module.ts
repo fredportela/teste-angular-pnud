@@ -2,8 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UsersRoutingModule } from './users-routing.module';
-import { UserListComponent } from './components/user-list/user-list.component';
-import { UserFormComponent } from './components/user-form/user-form.component';
+import { UserListComponent } from './pages/user-list/user-list.component';
+import { UserFormComponent } from './pages/user-form/user-form.component';
+import { UserDetailModalComponent } from './components/user-detail-modal/user-detail-modal.component';
+import { DeleteConfirmationModalComponent } from './components/delete-confirmation-modal/delete-confirmation-modal.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,13 +15,16 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     UserListComponent, 
     UserFormComponent, 
-    DashboardComponent
+    DashboardComponent,
+    UserDetailModalComponent,
+    DeleteConfirmationModalComponent
   ],
   imports: [
     CommonModule,
@@ -33,7 +38,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     MatSelectModule,
     MatCardModule,
     MatSnackBarModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatDialogModule
   ]
 })
 export class UsersModule {}

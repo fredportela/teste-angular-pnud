@@ -1,0 +1,138 @@
+.user-detail-modal {
+  max-width: 600px;
+  min-height: 380px;
+  padding: 10px;
+}
+
+.modal-header {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  h2 {
+    align-items: center;
+    margin: 0;
+    color: #333;
+    font-size: 1.5rem;
+    font-weight: 500;
+
+    mat-icon {
+      color: #1976d2;
+    }
+  }
+}
+
+.user-info {
+  .info-section {
+    margin-bottom: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    mat-card-header {
+      padding-bottom: 8px;
+
+      mat-card-title {
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: #1976d2;
+        margin: 0;
+      }
+    }
+
+    mat-card-content {
+      padding-top: 8px;
+    }
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+
+    .info-item {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+
+      label {
+        font-weight: 500;
+        color: #666;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      span {
+        color: #333;
+        font-size: 1rem;
+        line-height: 1.4;
+        word-break: break-word;
+      }
+
+      .status-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        border-radius: 12px;
+        font-size: 0.85rem;
+        font-weight: 500;
+        width: fit-content;
+
+        &.active {
+          background-color: #e8f5e8;
+          color: #2e7d32;
+
+          mat-icon {
+            color: #2e7d32;
+          }
+        }
+
+        &.inactive {
+          background-color: #ffebee;
+          color: #c62828;
+
+          mat-icon {
+            color: #c62828;
+          }
+        }
+
+        mat-icon {
+          font-size: 16px;
+          width: 16px;
+          height: 16px;
+        }
+      }
+    }
+  }
+}
+
+mat-dialog-actions {
+  padding: 16px 0 0 0;
+  margin: 0;
+
+  button {
+    min-width: 80px;
+  }
+}
+
+// Responsividade
+@media (min-width: 768px) {
+  .user-detail-modal {
+    max-width: 700px;
+  }
+
+  .info-grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .user-detail-modal {
+    max-width: 800px;
+  }
+}

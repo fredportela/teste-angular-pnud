@@ -6,6 +6,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { FormControl } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { MatDialog } from '@angular/material/dialog';
+import { UserDetailModalComponent } from '../../components/user-detail-modal/user-detail-modal.component';
+import { DeleteConfirmationModalComponent, DeleteConfirmationData } from '../../components/delete-confirmation-modal/delete-confirmation-modal.component';
 
 @Component({
   selector: 'app-user-list',
@@ -30,7 +33,8 @@ export class UserListComponent implements OnInit, AfterViewInit {
   constructor(
     private users: UserService, 
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void { 
@@ -117,13 +121,48 @@ export class UserListComponent implements OnInit, AfterViewInit {
     });
   }
 
-  edit(u: User) { 
+  edit($event: Event, u: User) { 
     this.router.navigate(['/users', u.id, 'edit']); 
+    $event.stopPropagation();
   }
   
-  remove(u: User) {
+  remove($event: Event, u: User) {
     if (!u.id) return;
-    this.users.remove(u.id).subscribe(() => this.fetch());
+    
+    const dialogData: DeleteConfirmationData = {
+      user: u,
+      title: 'Confirmar Exclusão',
+      message: `Tem certeza que deseja excluir o usuário "${u.name}"?`
+    };
+
+    const dialogRef = this.dialog.open(DeleteConfirmationModalComponent, {
+      width: '500px',
+      maxWidth: '90vw',
+      data: dialogData,
+      disableClose: false,
+      autoFocus: false
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.users.remove(u.id!).subscribe(() => {
+          this.fetch();
+        });
+      }
+    });
+
+    $event.stopPropagation();
+  }
+
+  showUserDetails($event: Event, user: User): void {
+    this.dialog.open(UserDetailModalComponent, {
+      width: '90vw',
+      maxWidth: '800px',
+      data: { user },
+      disableClose: false,
+      autoFocus: false
+    });
+    $event.stopPropagation();
   }
 
   clearSearch(): void {
