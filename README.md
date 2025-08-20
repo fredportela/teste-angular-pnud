@@ -39,6 +39,15 @@ Instale as dependências:
 npm install
 ```
 
+## Teste da Aplicação
+
+### Opção 1: Teste Online (Recomendado para demonstração rápida)
+A aplicação está disponível online e pode ser testada diretamente no navegador:
+**🌐 [https://users-pnud-project.web.app/](https://users-pnud-project.web.app/)**
+
+### Opção 2: Execução Local
+Para testar localmente, continue com as instruções abaixo.
+
 ## Executando o projeto com API Mock
 
 Para rodar o projeto utilizando uma API mockada:
@@ -67,15 +76,6 @@ Inicie a aplicação:
 ```bash
 npm start
 ```
-
-## Teste da Aplicação
-
-### Opção 1: Teste Online (Recomendado para demonstração rápida)
-A aplicação está disponível online e pode ser testada diretamente no navegador:
-**🌐 [https://users-pnud-project.web.app/](https://users-pnud-project.web.app/)**
-
-### Opção 2: Execução Local
-Para testar localmente, continue com as instruções abaixo.
 
 ## Scripts Disponíveis
 
