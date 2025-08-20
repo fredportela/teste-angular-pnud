@@ -9,6 +9,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { UserDetailModalComponent } from '../../components/user-detail-modal/user-detail-modal.component';
 import { DeleteConfirmationModalComponent, DeleteConfirmationData } from '../../components/delete-confirmation-modal/delete-confirmation-modal.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-user-list',
@@ -33,8 +34,8 @@ export class UserListComponent implements OnInit, AfterViewInit {
   constructor(
     private users: UserService, 
     private router: Router,
-    private route: ActivatedRoute,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private snack: MatSnackBar
   ) {}
 
   ngOnInit(): void { 
@@ -146,6 +147,7 @@ export class UserListComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.users.remove(u.id!).subscribe(() => {
+          this.snack.open('Usuário excluido com sucesso!', 'OK', { duration: 2000 });
           this.fetch();
         });
       }
