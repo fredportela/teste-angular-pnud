@@ -80,6 +80,7 @@ npm start
 ## Scripts Disponíveis
 
 - `npm start` - Inicia a aplicação em modo de desenvolvimento
+- `npm test` - Roda os testes unitários
 - `npm run start:all` - Inicia a aplicação em modo de desenvolvimento com o servidor de API mockada
 - `npm run build` - Cria o build de produção
 - `npm run mock:server` - Inicia o servidor de API mockada
