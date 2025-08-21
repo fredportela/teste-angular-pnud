@@ -1,4 +1,4 @@
-# Sistema de Listagem e Gestão de Usuários - Angular 16
+# Gestão de Usuários - Angular 16
 
 Este projeto é uma aplicação Single Page Application (SPA) desenvolvida em Angular 16 com Angular Material, responsiva e otimizada para dispositivos móveis. O objetivo é listar, cadastrar e editar usuários consumindo uma API REST externa ou um mock local.
 
