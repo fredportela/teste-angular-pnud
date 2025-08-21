@@ -8,7 +8,7 @@
     "start:all": "concurrently \"npm run start\" \"npm run start:mock\"",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --watch=false"
   },
   "private": true,
   "dependencies": {

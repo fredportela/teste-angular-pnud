@@ -10,12 +10,23 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      catchError((err: HttpErrorResponse) => {
-        console.error('HTTP Error:', err.message, err);
+      catchError((error: HttpErrorResponse) => {
+        let errorMessage: string;
 
-        const errorMessage = err.error?.message || err.message || 'Ocorreu um erro inesperado.';
+        if (error.error instanceof ErrorEvent) {
+          errorMessage = error.error.message;
+        } else if (error.status === 0 && error.statusText === 'Timeout') {
+          errorMessage = error.message;
+        } else if (error.error && typeof error.error === 'string') {
+          errorMessage = error.error;
+        } else if (error.message) {
+          errorMessage = error.message;
+        } else {
+          errorMessage = 'Ocorreu um erro inesperado.';
+        }
+
         this.snack.open(errorMessage, 'OK', { duration: 2000 });
-        return throwError(() => err);
+        return throwError(() => error);
       })
     );
   }
